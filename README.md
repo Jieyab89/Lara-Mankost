@@ -1,4 +1,4 @@
-<p align="center"><img src="Capture.PNG" width="400"></p>
+<p align="center"><img src="Capture.PNG" width="500"></p>
 
 ## About 
 
@@ -13,6 +13,8 @@ MANKOST, simple monitoring pemasukan dan pengeluaran Anda secara otomatis. Proje
 - Otomatis get pemasukan terbsesar
 - Sangat ringan bisa digunakan di laptop kentang
 - Graph interface (Coming soon)
+- Target nabung (Coming soon)
+- Tips nabung (Coming soon)
 - Export csv dan pdf (Coming soon)
 - Filter output dan pencarian (Coming soon)
 
@@ -41,6 +43,7 @@ Database :
 > DB_PASSWORD=your password
 
 - Run "php artisan migrate"
+- Run "php artisan db:seed"
 - Run "php artisan serve"
 - Make new "user folder" at public/images/user 
 
