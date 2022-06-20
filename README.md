@@ -45,5 +45,7 @@ Database :
 - Run "php artisan migrate"
 - Run "php artisan db:seed"
 - Run "php artisan serve"
-- Make new "user folder" at public/images/user 
 
+## Note 
+
+Halaman register saya disable, untuk itu Anda dapat melakukan database seeder terlebih dahulu
