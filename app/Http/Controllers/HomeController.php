@@ -32,7 +32,12 @@ class HomeController extends Controller
         $tot_strike_cash = Cashs::max('total');
         $tot_strike_cost = Costs::max('total');
         $balance =  $tot_cash - $tot_cost;
+        $tot_recap_cost = $balance - $tot_cost;
         
-        return view('home', compact('tot_cash', 'tot_cost', 'balance', 'tot_strike_cash', 'tot_strike_cost'));
+        return view('home', compact
+        (
+            'tot_cash', 'tot_cost', 'balance', 'tot_strike_cash', 'tot_strike_cost',
+            'tot_recap_cost'
+        ));
     }
 }

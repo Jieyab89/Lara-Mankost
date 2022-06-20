@@ -26,5 +26,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Post</button>
   </form>
+  <p></p>
+  <p style="color:red">*Hapus "." titik Anda</p>
 </div>
 @endsection

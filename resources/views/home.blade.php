@@ -37,6 +37,22 @@
       </div>
     </div>
   </div>
+  <div class="col-sm-6">
+    <div class="card text-black border-danger mb-3">
+      <div class="card-body">
+        <h2 class="card-title">Rekap pengeluaran/Cost recap</h2>
+        <p class="card-text">Rp. @currency($tot_recap_cost)</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card text-black border-danger mb-3">
+      <div class="card-body">
+        <h2 class="card-title">Nabung/Save money</h2>
+        <p class="card-text">Rp. Soon</p>
+      </div>
+    </div>
+  </div>
  </div>
 </div>
 <div class="d-flex justify-content-center">
