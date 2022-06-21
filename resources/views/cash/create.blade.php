@@ -18,11 +18,21 @@
     @method('post')
     <div class="form-group">
       <label for="exampleInputEmail1">Keterangan</label>
-      <input type="text" name="name" class="form-control" aria-describedby="name" placeholder="Keterangan">
+      <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+        @error('name')
+        <span class="invalid-feedback" role="alert">
+          <strong>{{ $message }}</strong>
+        </span>
+        @enderror
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Total</label>
-      <input type="number" name="total" class="form-control" aria-describedby="total" placeholder="total">
+      <input id="total" type="number" class="form-control @error('total') is-invalid @enderror" name="total" value="{{ old('total') }}" required autocomplete="total" autofocus>
+        @error('total')
+        <span class="invalid-feedback" role="alert">
+          <strong>{{ $message }}</strong>
+        </span>
+        @enderror
     </div>
     <button type="submit" class="btn btn-primary">Post</button>
   </form>

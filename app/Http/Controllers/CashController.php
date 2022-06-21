@@ -37,7 +37,7 @@ class CashController extends Controller
         $validatedData = $request->validate
         ([
             'name' => 'required|min:1|max:75',
-            'total' => 'required|min:1|max:25',
+            'total' => 'required|min:1|max:75',
         ]);
 
         Cashs::create
@@ -60,7 +60,7 @@ class CashController extends Controller
     {
         //dd(1);
         $this->validate($request, [
-            'name' => 'required|min:5|max:75|nullable',
+            'name' => 'required|min:1|max:75|nullable',
             'total' => 'required|min:1|max:75|nullable',
         ]);
   
@@ -80,5 +80,12 @@ class CashController extends Controller
         $delete->delete();
   
         return redirect()->back()->with(['success.down' => 'success.up: '.$delete->name.' Deleted!']);
+    }
+
+    public function massdelete()
+    {
+        $delete = Cashs::truncate();
+  
+        return redirect()->back()->with(['success.down' => 'All deleted!']);
     }
 }

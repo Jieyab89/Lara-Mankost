@@ -14,8 +14,11 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-lg-12">
-         <h1 style="text-align:center;">Cost</h1>
-         <a href="{{ route('cost.post') }}" class="btn btn-primary">Buat laporan baru</a>
+         <h1 style="text-align:center;">Savings</h1>
+         @if(!$hasData)
+         <a href="{{ route('saves.post') }}" class="btn btn-primary">Buat laporan baru</a>
+         @else
+         @endif
          <p></p>
          <div class="table-responsive">
           <table class="table">
@@ -29,16 +32,16 @@
               </tr>
             </thead>
             <tbody>
-            @forelse($cost as $c)
+            @forelse($saves as $c)
               <tr>
                 <td>{{ $c->name }}</td>
                 <td>@currency($c->total)</td>
                 <td>{{ $c->created_at }}</td>
                 <td>
-                  <div><a class="btn btn-primary btn-sm" href="{{ route('cost.edit', $c->id) }}"><i class="fa fa-edit"></i></a></div>
+                  <div><a class="btn btn-primary btn-sm" href="{{ route('saves.edit', $c->id) }}"><i class="fa fa-edit"></i></a></div>
                 </td>
                 <td>
-                  <form action="{{ route('cost.hapus', $c->id) }}" method="POST">
+                  <form action="{{ route('saves.hapus', $c->id) }}" method="POST">
                     @csrf
                     @method('delete')
                     <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -51,16 +54,10 @@
             @endforelse
           </table>
         </div>
-        <h1><span class="badge badge-success">Rp. @currency($tot_cost)</span></h1>
-        <p></p>
-         <form action="{{ route('massdelete.costs') }}" method="POST">
-            @csrf
-            @method('delete')
-           <a href="{{ route('massdelete.costs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Hapus semua laporan 
-          </form>
+        <h1><span class="badge badge-success">Rp. @currency($tot_savesmon)</span></h1>
       </div>
     </div>
     <p></p>
-    {{ $cost->links() }}
+    {{ $saves->links() }}
 </div>
 @endsection

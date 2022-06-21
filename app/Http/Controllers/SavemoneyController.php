@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Costs;
-
+use App\Saves;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CostController extends Controller
+class SavemoneyController extends Controller
 {
     public function __construct()
     {
@@ -21,14 +19,16 @@ class CostController extends Controller
      */
     public function index()
     {
-        $tot_cost = Costs::sum('total');
-        $cost = Costs::latest()->paginate(25)->appends(request()->except('page'));
-        return view('cost.index', compact('tot_cost', 'cost'));
+        $tot_savesmon = Saves::sum('total');
+        $saves = Saves::latest()->paginate(1)->appends(request()->except('page'));
+        $hasData = Saves::first();
+
+        return view('saves.index', compact('tot_savesmon', 'saves', 'hasData'));
     }
 
     public function post()
     {
-        return view('cost.create');
+        return view('saves.create');
     }
 
     public function send(Request $request)
@@ -39,20 +39,20 @@ class CostController extends Controller
             'total' => 'required|min:1|max:75',
         ]);
 
-        Costs::create
+        Saves::create
         ([
           'name' => $request->name,
           'total' => $request->total,
         ]);
 
-        return redirect()->route('cost')->with(['success.up' => 'cost: '.$request->name.' Added']);
+        return redirect()->route('saves')->with(['success.up' => 'cost: '.$request->name.' Added']);
     }
     
     public function edit($id)
     {
-        $cost = Costs::find($id);
+        $saves = Saves::find($id);
     
-        return view('cost.edit', compact('cost'));
+        return view('saves.edit', compact('saves'));
     }
   
     public function update(Request $request, $id)
@@ -63,28 +63,21 @@ class CostController extends Controller
             'total' => 'required|min:1|max:75|nullable',
         ]);
   
-        $cost = Costs::findOrFail($id);
+        $saves = Saves::findOrFail($id);
     
-        $cost->update([
+        $saves->update([
             'name' => $request->name,
             'total' => $request->total,
         ]);
   
-        return redirect()->route('cost')->with(['success.up' => 'cost: '.$request->name.' Edited!']);
+        return redirect()->route('saves')->with(['success.up' => 'saves: '.$request->name.' Edited!']);
     }
   
     public function delete($id)
     {
-        $delete = Costs::findOrFail($id);
+        $delete = Saves::findOrFail($id);
         $delete->delete();
   
         return redirect()->back()->with(['success.down' => 'success.up: '.$delete->name.' Deleted!']);
-    }
-
-    public function massdelete()
-    {
-        $delete = Costs::truncate();
-  
-        return redirect()->back()->with(['success.down' => 'All deleted!']);
     }
 }

@@ -6,10 +6,9 @@ use App\User;
 use App\Cashs;
 use App\Costs;
 use App\Saves;
-
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ExportController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,7 +25,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function all()
     {   
         $tot_cash = Cashs::sum('total');
         $tot_cost = Costs::sum('total');
@@ -35,26 +34,33 @@ class HomeController extends Controller
         $tot_strike_cost = Costs::max('total');
         $balance =  $tot_cash - $tot_cost;
         $tot_recap_cost = $balance - $tot_cost;
-        
-        /* 
-        
-        Jangan sampai saldo dan tabungan Anda melebihi pengeluaran perhari maupun pengeluaran secara total
-        Kalkulasikan pengeluaran Anda
-        
-        */ 
-        return view('home', compact
+
+        return view('export.all', compact
         (
             'tot_cash', 'tot_cost', 'balance', 'tot_strike_cash', 'tot_strike_cost',
             'tot_recap_cost', 'tot_saves'
         ));
     }
 
-    public function massdelete()
-    {
-        $delete = Cashs::truncate();
-        $delete = Costs::truncate();
-        $delete = Saves::truncate();
-  
-        return redirect()->back()->with(['success.down' => 'All deleted!']);
+    public function cash()
+    {   
+        $tot_cash = Cashs::sum('total');
+        $cash_data = Cashs::all();
+
+        return view('export.cash', compact
+        (
+            'tot_cash', 'cash_data'
+        ));
+    }
+
+    public function cost()
+    {   
+        $tot_cost = Costs::sum('total');
+        $cost_data = Costs::all();
+
+        return view('export.cost', compact
+        (
+            'tot_cost', 'cost_data'
+        ));
     }
 }

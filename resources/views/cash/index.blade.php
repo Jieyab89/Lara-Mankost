@@ -35,14 +35,14 @@
                 <td>@currency($c->total)</td>
                 <td>{{ $c->created_at }}</td>
                 <td>
-					<div><a class="btn btn-primary btn-sm" href="{{ route('cash.edit', $c->id) }}"><i class="fa fa-edit"></i></a></div>
-				</td>
+					        <div><a class="btn btn-primary btn-sm" href="{{ route('cash.edit', $c->id) }}"><i class="fa fa-edit"></i></a></div>
+				        </td>
                 <td>
-                <form action="{{ route('cash.hapus', $c->id) }}" method="POST">
-					@csrf
-					@method('delete')
-					<button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-				</form>
+                  <form action="{{ route('cash.hapus', $c->id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                  </form>
                 </td>
               </tr>
             </tbody>
@@ -51,7 +51,13 @@
             @endforelse
           </table>
         </div>
-        <span class="badge badge-success">Rp. @currency($tot_cash)</span>
+        <h1><span class="badge badge-success">Rp. @currency($tot_cash)</span></h1>
+        <p></p>
+         <form action="{{ route('massdelete.cashs') }}" method="POST">
+            @csrf
+            @method('delete')
+           <a href="{{ route('massdelete.cashs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Hapus semua laporan 
+          </form>
       </div>
     </div>
     <p></p>
