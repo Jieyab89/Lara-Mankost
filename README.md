@@ -8,7 +8,7 @@
 
 MANKOST, simple monitoring pemasukan dan pengeluaran Anda secara otomatis. Project ini dibuat di saat saya untuk memanage keuangan serta gabut 
 
-## Bgaiaman cara bekerja?
+## Bagaimana cara bekerja?
 
 Simple, pengeluaran tidak boleh lebih besar, pastikan saldo dan tabungan yang Anda sesuaikan jangan sampai lebih boros!
 
