@@ -53,3 +53,9 @@ Route::delete('/saves-del/{id}', 'SavemoneyController@delete')->name('saves.hapu
 Route::get('/export-all', 'ExportController@all')->name('all');
 Route::get('/export-cash', 'ExportController@cash')->name('print.cash');
 Route::get('/export-cost', 'ExportController@cost')->name('print.cost');
+
+//Report
+Route::get('/report-all', 'ReportsController@index')->name('report');
+Route::get('/report-create', 'ReportsController@post')->name('report.post');
+Route::post('/report-create', 'ReportsController@send')->name('report.send');
+Route::delete('/report-del/{id}', 'ReportsController@delete')->name('report.hapus');

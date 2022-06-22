@@ -6,6 +6,7 @@ use App\User;
 use App\Cashs;
 use App\Costs;
 use App\Saves;
+use App\Reports;
 
 use Illuminate\Http\Request;
 
@@ -36,6 +37,9 @@ class HomeController extends Controller
         $balance =  $tot_cash - $tot_cost;
         $tot_recap_cost = $balance - $tot_cost;
         
+        $show = Reports::latest()->paginate(1)->appends(request()->except('page'));
+        $hasData = Reports::first();
+
         /* 
         
         Jangan sampai saldo dan tabungan Anda melebihi pengeluaran perhari maupun pengeluaran secara total
@@ -45,7 +49,7 @@ class HomeController extends Controller
         return view('home', compact
         (
             'tot_cash', 'tot_cost', 'balance', 'tot_strike_cash', 'tot_strike_cost',
-            'tot_recap_cost', 'tot_saves'
+            'tot_recap_cost', 'tot_saves', 'show', 'hasData'
         ));
     }
 

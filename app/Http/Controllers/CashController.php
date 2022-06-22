@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Cashs;
+use App\Reports; 
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,12 +25,16 @@ class CashController extends Controller
     {
         $tot_cash = Cashs::sum('total');
         $cash = Cashs::latest()->paginate(25)->appends(request()->except('page'));
-        return view('cash.index', compact('tot_cash', 'cash'));
+
+        $hasData = Reports::first();
+
+        return view('cash.index', compact('tot_cash', 'cash', 'hasData'));
     }
 
     public function post()
     {
-        return view('cash.create');
+        $hasData = Reports::first();
+        return view('cash.create', compact('hasData'));
     }
 
     public function send(Request $request)
@@ -52,8 +57,9 @@ class CashController extends Controller
     public function edit($id)
     {
         $cash = Cashs::find($id);
-    
-        return view('cash.edit', compact('cash'));
+        $hasData = Reports::first();
+
+        return view('cash.edit', compact('cash', 'hasData'));
     }
   
     public function update(Request $request, $id)

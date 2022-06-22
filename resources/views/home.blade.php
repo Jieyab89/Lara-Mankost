@@ -4,6 +4,18 @@
 <style>
   .space { margin-top: 16px; }
 </style>
+@if(!$hasData)
+<div class="container">
+ <div class="d-flex justify-content-center">
+  <h1>Anda belum menyetting tanggal waktu laporan</h1>
+ </div>
+</div>
+<p class="text-center" style="color:red">
+    @forelse($show as $c) {{ $c->report_at }} 
+    @empty Setting waktu laporan Anda dulu! <a href="{{ route('report') }}">klik disini</a> 
+    @endforelse
+</p>
+@else
 <div class="container">
 @if(session('success.down'))
    <div class="alert alert-danger">
@@ -13,6 +25,11 @@
 <div class="d-flex justify-content-center">
   <h4>Rekap laporan Anda selama perbulan</h4>
 </div>
+<p class="text-center">
+  @forelse($show as $c) {{ $c->report_at }} 
+  @empty Setting waktu laporan Anda dulu! <a href="{{ route('report') }}">klik disini</a> 
+  @endforelse
+</p>
 <div class="btn-group">
   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Export
@@ -132,5 +149,5 @@
     <p>Soon</p>
   </div>
 </div>
-
+@endif
 @endsection

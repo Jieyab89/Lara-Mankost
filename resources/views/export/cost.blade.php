@@ -28,6 +28,11 @@
     <center>
       <h1>Cost</h1>
     </center>
+	<p class="text-center" style="color:red">
+		@forelse($show as $c) {{ $c->report_at }} 
+		@empty Setting waktu laporan Anda dulu! <a href="{{ route('report') }}">klik disini</a> 
+		@endforelse
+	</p>
     <table>
 		<tr>
             <th>No</th>
@@ -40,7 +45,7 @@
 		<tr>
 			<td>{{ $no++ }}</td>
 			<td>{{ $row->name }}</td>
-			<td>{{ $row->total }}</td>
+			<td>@currency($row->total)</td>
 		    <td>{{ $row->created_at }}</td>
 		</tr>
 		@empty

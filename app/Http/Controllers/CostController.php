@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Costs;
+use App\Reports;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,12 +24,16 @@ class CostController extends Controller
     {
         $tot_cost = Costs::sum('total');
         $cost = Costs::latest()->paginate(25)->appends(request()->except('page'));
-        return view('cost.index', compact('tot_cost', 'cost'));
+        $hasData = Reports::first();
+
+        return view('cost.index', compact('tot_cost', 'cost', 'hasData'));
     }
 
     public function post()
     {
-        return view('cost.create');
+        $hasData = Reports::first();
+
+        return view('cost.create', compact('hasData'));
     }
 
     public function send(Request $request)
@@ -51,8 +56,9 @@ class CostController extends Controller
     public function edit($id)
     {
         $cost = Costs::find($id);
-    
-        return view('cost.edit', compact('cost'));
+        $hasData = Reports::first();
+
+        return view('cost.edit', compact('cost', 'hasData'));
     }
   
     public function update(Request $request, $id)

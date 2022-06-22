@@ -19,6 +19,11 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 </head>
 <body>
     <div id="app">
@@ -59,6 +64,10 @@
                                     
                                     <a class="dropdown-item" href="{{ route('home') }}">
                                         {{ __('Home') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('report') }}">
+                                        {{ __('Tanggl laporan') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

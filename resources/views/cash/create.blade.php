@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+@if(!$hasData)
+<div class="container">
+ <div class="d-flex justify-content-center">
+  <h1>Anda belum menyetting tanggal waktu laporan</h1>
+ </div>
+</div>
+@else
 <div class="container">
     @if(session('success.up'))
           <div class="alert alert-success">
@@ -39,4 +46,5 @@
   <p></p>
   <p style="color:red">*Hapus "." titik Anda</p>
 </div>
+@endif
 @endsection

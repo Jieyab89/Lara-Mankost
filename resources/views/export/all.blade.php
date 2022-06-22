@@ -10,6 +10,11 @@
   .space { margin-top: 16px; }
 </style>
 <div class="container">
+<p class="text-center" style="color:red">
+  @forelse($show as $c) {{ $c->report_at }} 
+  @empty Setting waktu laporan Anda dulu! <a href="{{ route('report') }}">klik disini</a> 
+  @endforelse
+</p>
 <div class="space"></div>
 <div class="row">
   <div class="col-sm-6">
