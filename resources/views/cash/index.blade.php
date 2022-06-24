@@ -28,6 +28,7 @@
           <table class="table">
             <thead>
               <tr>
+                <th scope="col">No</th>
                 <th scope="col">Keterangan</th>
                 <th scope="col">Total</th>
                 <th scope="col">Tanggal</th>
@@ -36,8 +37,10 @@
               </tr>
             </thead>
             <tbody>
+            @php $no = 1; @endphp
             @forelse($cash as $c)
               <tr>
+                <td>{{ $no++ }}</td>
                 <td>{{ $c->name }}</td>
                 <td>@currency($c->total)</td>
                 <td>{{ $c->created_at }}</td>
