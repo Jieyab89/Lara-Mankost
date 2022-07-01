@@ -43,7 +43,7 @@
                 <td>{{ $no++ }}</td>
                 <td>{{ $c->name }}</td>
                 <td>@currency($c->total)</td>
-                <td>{{ $c->created_at }}</td>
+                <td>{{ $c->created_at->toDateString() }}</td>
                 <td>
                   <div><a class="btn btn-primary btn-sm" href="{{ route('cost.edit', $c->id) }}"><i class="fa fa-edit"></i></a></div>
                 </td>

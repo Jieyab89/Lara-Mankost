@@ -11,7 +11,7 @@
  </div>
 </div>
 <p class="text-center" style="color:red">
-    @forelse($show as $c) {{ $c->report_at }} 
+    @forelse($show as $c) {{ $c->report_at->toDateString() }} 
     @empty Setting waktu laporan Anda dulu! <a href="{{ route('report') }}">klik disini</a> 
     @endforelse
 </p>
