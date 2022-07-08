@@ -23,6 +23,13 @@
         <div class="col-lg-12">
          <h1 style="text-align:center;">Cash</h1>
          <a href="{{ route('cash.post') }}" class="btn btn-primary">Buat laporan baru</a>
+          <div class="col-md-12 bg-light text-right">
+            <form action="{{ route('massdelete.cashs') }}" method="POST">
+              @csrf
+              @method('delete')
+              <a href="{{ route('massdelete.cashs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Hapus semua laporan 
+            </form>
+          </div>
          <p></p>
          <div class="table-responsive">
           <table class="table">
@@ -62,12 +69,6 @@
           </table>
         </div>
         <h1><span class="badge badge-success">Rp. @currency($tot_cash)</span></h1>
-        <p></p>
-         <form action="{{ route('massdelete.cashs') }}" method="POST">
-            @csrf
-            @method('delete')
-           <a href="{{ route('massdelete.cashs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Hapus semua laporan 
-          </form>
       </div>
     </div>
     <p></p>
