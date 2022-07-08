@@ -121,6 +121,22 @@
       </div>
     </div>
   </div>
+  <div class="col-sm-6">
+    <div class="card text-black border-info mb-3">
+      <div class="card-body">
+        <h2 class="card-title">Pemasukan/Income Today</h2>
+        <p class="card-text">Rp. @currency($tot_cash_today)</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card text-black border-info mb-3">
+      <div class="card-body">
+        <h2 class="card-title">Pengeluaran/Cost Today</h2>
+        <p class="card-text">Rp. @currency($tot_cost_today)</p>
+      </div>
+    </div>
+  </div>
  </div>
 </div>
 <div class="d-flex justify-content-center">
@@ -133,10 +149,15 @@
           <small style="color:green">*Belum ada rekapan</small>
           <div class="space"></div>
           @elseif($balance < "0")
-          <p class="card-text" style="color:red">Rp. @currency($balance)</p>
+          <p class="card-text" style="color:red">Rp. @currency($balance)&nbsp;<i class="fa fa-caret-down" style='font-size:18px;color:red'></i></p>
           <div class="space"></div>
           @else
-          <p class="card-text" style="color:green">Rp. @currency($balance)</p>
+          <p class="card-text" style="color:green">Rp. @currency($balance)
+          @if($tot_cash_today)
+            &nbsp;<i class="fa fa-caret-up" style='font-size:18px;color:green'></i> <br> <br> *Ada pemasukan</p>
+          @else 
+            &nbsp;<i class="fa fa-caret-down" style='font-size:18px;color:red'></i> <br> <br> *Tidak ada pemasukan</p>
+          @endif
           <div class="space"></div>
           @endif
         </div>

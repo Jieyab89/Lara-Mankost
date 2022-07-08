@@ -25,6 +25,7 @@ Route::any('/all-massdel', 'HomeController@massdelete')->name('massdelete.all');
 
 //CASH 
 Route::get('/cash', 'CashController@index')->name('cash');
+Route::get('/cash-today', 'CashController@today')->name('cash.today');
 Route::get('/cash-create', 'CashController@post')->name('cash.post');
 Route::post('/cash-create', 'CashController@send')->name('cash.send');
 Route::get('/cash-edit/{cash:id}', 'CashController@edit')->name('cash.edit');
@@ -34,6 +35,7 @@ Route::any('/cash-massdel', 'CashController@massdelete')->name('massdelete.cashs
 
 //COST 
 Route::get('/cost', 'CostController@index')->name('cost');
+Route::get('/cost-today', 'CostController@today')->name('cost.today');
 Route::get('/cost-create', 'CostController@post')->name('cost.post');
 Route::post('/cost-create', 'CostController@send')->name('cost.send');
 Route::get('/cost-edit/{cost:id}', 'CostController@edit')->name('cost.edit');

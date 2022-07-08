@@ -23,6 +23,14 @@
         <div class="col-lg-12">
          <h1 style="text-align:center;">Cash</h1>
          <a href="{{ route('cash.post') }}" class="btn btn-primary">Buat laporan baru</a>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Fillter
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{{ route('cash.today') }}">Hari ini</a>
+            </div>
+          </div>
           <div class="col-md-12 bg-light text-right">
             <form action="{{ route('massdelete.cashs') }}" method="POST">
               @csrf

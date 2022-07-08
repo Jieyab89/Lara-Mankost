@@ -7,7 +7,7 @@ use App\Cashs;
 use App\Costs;
 use App\Saves;
 use App\Reports;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -39,6 +39,8 @@ class HomeController extends Controller
         
         $show = Reports::latest()->paginate(1)->appends(request()->except('page'));
         $hasData = Reports::first();
+        $tot_cash_today = Cashs::whereDate('created_at', Carbon::today())->sum('total');
+        $tot_cost_today = Costs::whereDate('created_at', Carbon::today())->sum('total');
 
         /* 
         
@@ -49,7 +51,7 @@ class HomeController extends Controller
         return view('home', compact
         (
             'tot_cash', 'tot_cost', 'balance', 'tot_strike_cash', 'tot_strike_cost',
-            'tot_recap_cost', 'tot_saves', 'show', 'hasData'
+            'tot_recap_cost', 'tot_saves', 'show', 'hasData', 'tot_cash_today', 'tot_cost_today'
         ));
     }
 

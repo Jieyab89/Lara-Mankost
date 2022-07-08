@@ -8,6 +8,7 @@ use App\Reports;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class CashController extends Controller
 {
@@ -29,6 +30,15 @@ class CashController extends Controller
         $hasData = Reports::first();
 
         return view('cash.index', compact('tot_cash', 'cash', 'hasData'));
+    }
+
+    public function today()
+    {
+        $today = Cashs::whereDate('created_at', Carbon::today())->paginate(25)->appends(request()->except('page'));
+        $hasData = Reports::first();
+        $tot_cash_today = Cashs::whereDate('created_at', Carbon::today())->sum('total');
+
+        return view('cash.today', compact('today', 'hasData', 'tot_cash_today'));
     }
 
     public function post()

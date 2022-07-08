@@ -7,6 +7,7 @@ use App\Reports;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class CostController extends Controller
 {
@@ -27,6 +28,15 @@ class CostController extends Controller
         $hasData = Reports::first();
 
         return view('cost.index', compact('tot_cost', 'cost', 'hasData'));
+    }
+
+    public function today()
+    {
+        $today = Costs::whereDate('created_at', Carbon::today())->paginate(25)->appends(request()->except('page'));
+        $hasData = Reports::first();
+        $tot_cost_today = Costs::whereDate('created_at', Carbon::today())->sum('total');
+
+        return view('cost.today', compact('today', 'hasData', 'tot_cost_today'));
     }
 
     public function post()

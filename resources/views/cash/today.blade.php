@@ -21,15 +21,22 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-lg-12">
-         <h1 style="text-align:center;">Cost</h1>
-         <a href="{{ route('cost.post') }}" class="btn btn-primary">Buat laporan baru</a>
+         <h1 style="text-align:center;">Cash Today</h1>
+         <a href="{{ route('cash.post') }}" class="btn btn-primary">Buat laporan baru</a>
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Fillter
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="{{ route('cost.today') }}">Hari ini</a>
+              <a class="dropdown-item" href="{{ route('cash.today') }}">Hari ini</a>
             </div>
+          </div>
+          <div class="col-md-12 bg-light text-right">
+            <form action="{{ route('massdelete.cashs') }}" method="POST">
+              @csrf
+              @method('delete')
+              <a href="{{ route('massdelete.cashs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Hapus semua laporan 
+            </form>
           </div>
          <p></p>
          <div class="table-responsive">
@@ -46,17 +53,17 @@
             </thead>
             <tbody>
             @php $no = 1; @endphp
-            @forelse($cost as $c)
+            @forelse($today as $c)
               <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $c->name }}</td>
                 <td>@currency($c->total)</td>
                 <td>{{ $c->created_at->toDateString() }}</td>
                 <td>
-                  <div><a class="btn btn-primary btn-sm" href="{{ route('cost.edit', $c->id) }}"><i class="fa fa-edit"></i></a></div>
-                </td>
+					<div><a class="btn btn-primary btn-sm" href="{{ route('cash.edit', $c->id) }}"><i class="fa fa-edit"></i></a></div>
+				</td>
                 <td>
-                  <form action="{{ route('cost.hapus', $c->id) }}" method="POST">
+                  <form action="{{ route('cash.hapus', $c->id) }}" method="POST">
                     @csrf
                     @method('delete')
                     <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -69,18 +76,11 @@
             @endforelse
           </table>
         </div>
-        <h1><span class="badge badge-success">Rp. @currency($tot_cost)</span></h1>
+        <h1><span class="badge badge-success">Rp. @currency($tot_cash_today)</span></h1>
       </div>
     </div>
     <p></p>
-    {{ $cost->links() }}
-    <div class="col-md-12 bg-light text-right">
-      <form action="{{ route('massdelete.costs') }}" method="POST">
-        @csrf
-        @method('delete')
-        <a href="{{ route('massdelete.costs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Hapus semua laporan 
-      </form>
-    </div>
+    {{ $today->links() }}
 </div>
 @endif
 @endsection

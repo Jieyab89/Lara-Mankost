@@ -16,6 +16,7 @@ Simple, pengeluaran tidak boleh lebih besar, pastikan saldo dan tabungan yang An
 
 ## Fitur
 
+- Filter date (hari ini)
 - Simple design 
 - Target nabung 
 - Otomatis count
