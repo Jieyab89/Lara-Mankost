@@ -4,7 +4,7 @@
 @if(!$hasData)
 <div class="container">
  <div class="d-flex justify-content-center">
-  <h1>Anda belum menyetting tanggal waktu laporan</h1>
+  <h1>You have not set a report time date</h1>
  </div>
 </div>
 @else
@@ -22,20 +22,20 @@
     <div class="row justify-content-center">
         <div class="col-lg-12">
          <h1 style="text-align:center;">Cash Today</h1>
-         <a href="{{ route('cash.post') }}" class="btn btn-primary">Buat laporan baru</a>
+         <a href="{{ route('cash.post') }}" class="btn btn-primary">Create new report</a>
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Fillter
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="{{ route('cash.today') }}">Hari ini</a>
+              <a class="dropdown-item" href="{{ route('cash.today') }}">Today</a>
             </div>
           </div>
           <div class="col-md-12 bg-light text-right">
             <form action="{{ route('massdelete.cashs') }}" method="POST">
               @csrf
               @method('delete')
-              <a href="{{ route('massdelete.cashs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Hapus semua laporan 
+              <a href="{{ route('massdelete.cashs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Delete all
             </form>
           </div>
          <p></p>
@@ -44,9 +44,9 @@
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">Keterangan</th>
+                <th scope="col">Desc</th>
                 <th scope="col">Total</th>
-                <th scope="col">Tanggal</th>
+                <th scope="col">Date</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>

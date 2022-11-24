@@ -16,7 +16,7 @@
         <div class="col-lg-12">
          <h1 style="text-align:center;">Report</h1>
          @if(!$hasData)
-         <a href="{{ route('report.post') }}" class="btn btn-primary">Buat laporan baru</a>
+         <a href="{{ route('report.post') }}" class="btn btn-primary">Sett your date</a>
          @else
          @endif
          <p></p>
@@ -24,9 +24,9 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">Keterangan</th>
-                <th scope="col">Tanggal</th>
-                <th scope="col">Hapus</th>
+                <th scope="col">Desc</th>
+                <th scope="col">Date</th>
+                <th scope="col">Delete</th>
               </tr>
             </thead>
             <tbody>

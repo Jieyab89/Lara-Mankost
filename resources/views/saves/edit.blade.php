@@ -17,7 +17,7 @@
     @csrf
     @method('post')
     <div class="form-group">
-      <label for="exampleInputEmail1">Keterangan</label>
+      <label for="exampleInputEmail1">Desc</label>
       <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $saves->name }}" required autocomplete="name" autofocus>
         @error('name')
         <span class="invalid-feedback" role="alert">

@@ -13,17 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DocsController@index')->name('index');
+Route::get('/update-mankost', 'DocsController@update_mankost')->name('update');
+Route::get('/contrib-mankost', 'DocsController@contrib_mankost')->name('contrib');
+Route::get('/add-cash-mankost', 'DocsController@make_cash')->name('make.cash');
+Route::get('/add-cost-mankost', 'DocsController@make_cost')->name('make.cost');
+Route::get('/symbol-mean-mankost', 'DocsController@symbol_icon')->name('symbol');
 
-//Auth::routes();
-Auth::routes(['register' => false]);
+Auth::routes();
+//Auth::routes(['register' => false]); //disable if you has registered!
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::any('/all-massdel', 'HomeController@massdelete')->name('massdelete.all');
 
-//CASH 
+//CASH
 Route::get('/cash', 'CashController@index')->name('cash');
 Route::get('/cash-today', 'CashController@today')->name('cash.today');
 Route::get('/cash-create', 'CashController@post')->name('cash.post');
@@ -33,7 +36,7 @@ Route::post('/cash-edit/{cash:id}', 'CashController@update')->name('cash.update'
 Route::delete('/cash-del/{id}', 'CashController@delete')->name('cash.hapus');
 Route::any('/cash-massdel', 'CashController@massdelete')->name('massdelete.cashs');
 
-//COST 
+//COST
 Route::get('/cost', 'CostController@index')->name('cost');
 Route::get('/cost-today', 'CostController@today')->name('cost.today');
 Route::get('/cost-create', 'CostController@post')->name('cost.post');

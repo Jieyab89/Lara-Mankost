@@ -15,7 +15,7 @@
 	table td{
 		border: 1px solid #3c3c3c;
 		padding: 3px 8px;
- 
+
 	}
 	a{
 		background: blue;
@@ -29,30 +29,30 @@
       <h1>Cost</h1>
     </center>
 	<p class="text-center" style="color:red">
-		@forelse($show as $c) {{ $c->report_at }} 
-		@empty Setting waktu laporan Anda dulu! <a href="{{ route('report') }}">klik disini</a> 
+		@forelse($show as $c) {{ $c->report_at }}
+		@empty Sett your date first!<a href="{{ route('report') }}">Here</a>
 		@endforelse
 	</p>
     <table>
 		<tr>
-            <th>No</th>
-            <th>Keterangan</th>
-            <th>Total</th>
-            <th>Tanggal</th>
+       <th>No</th>
+       <th>Desc</th>
+       <th>Total</th>
+       <th>Date</th>
 		</tr>
-        @php $no = 1; @endphp
+    @php $no = 1; @endphp
 		@forelse ($cost_data as $row)
 		<tr>
 			<td>{{ $no++ }}</td>
 			<td>{{ $row->name }}</td>
 			<td>@currency($row->total)</td>
-		    <td>{{ $row->created_at }}</td>
+		  <td>{{ $row->created_at }}</td>
 		</tr>
 		@empty
 		<tr>
-			<td colspan="5" class="text-center">Tidak ada data</td>
-		</tr>	
-        @endforelse
+			<td colspan="5" class="text-center">No data</td>
+		</tr>
+    @endforelse
 	</table>
     <p>Total : Rp. @currency($tot_cost)</p>
 </body>

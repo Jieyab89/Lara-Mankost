@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ReportsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $show = Reports::get();
@@ -42,7 +47,7 @@ class ReportsController extends Controller
     {
         $delete = Reports::findOrFail($id);
         $delete->delete();
-  
+
         return redirect()->back()->with(['success.down' => 'success.up: '.$delete->name.' Deleted!']);
     }
 }

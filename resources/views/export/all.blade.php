@@ -11,8 +11,8 @@
 </style>
 <div class="container">
 <p class="text-center" style="color:red">
-  @forelse($show as $c) {{ $c->report_at }} 
-  @empty Setting waktu laporan Anda dulu! <a href="{{ route('report') }}">klik disini</a> 
+  @forelse($show as $c) {{ $c->report_at }}
+  @empty Setting your date first! <a href="{{ route('report') }}">Here</a>
   @endforelse
 </p>
 <div class="space"></div>
@@ -53,17 +53,17 @@
     <div class="card text-black border-danger mb-3">
       <div class="card-body">
         <h2 class="card-title">Rekap pengeluaran/Cost recap</h2>
-        <p>Pantau pengeluaran rekapan Anda secara berkala!</p>
+        <p>Keep track of your recap expenses regularly!</p>
         <p class="card-text">Rp. @currency($tot_recap_cost)</p>
         @if($tot_recap_cost < "$tot_saves")
         <!-- SETT YOUR VALUE -->
-        <small style="color:red">*Saldo Anda tidak aman, kurangi pengeluaran! Dan fokus menabung</small>
+        <small style="color:red">*Your balance is not safe, reduce expenses! And focus on saving</small>
         <div class="space"></div>
         @elseif($tot_saves < "0")
-        <small style="color:green">*Belum ada rekapan</small>
+        <small style="color:green">*No report</small>
         <div class="space"></div>
         @else
-        <small style="color:green">*Saldo Anda aman</small>
+        <small style="color:green">*Your balance are safe</small>
         <div class="space"></div>
         @endif
       </div>
@@ -73,7 +73,7 @@
     <div class="card text-black border-danger mb-3">
       <div class="card-body">
         <h2 class="card-title">Nabung/Save money</h2>
-        <p>Target untuk menabung/Set your taget for save money</p>
+        <p>Target for saving/Set your target for saving money</p>
         <p class="card-text">Rp. @currency($tot_saves)</p>
       </div>
     </div>
@@ -89,11 +89,5 @@
         </div>
       </div>
     </div>
-</div>
-<div class="container">
-  <div class="row">
-    <h2>Graph</h2>
-    <p>Soon</p>
-  </div>
 </div>
 @endsection

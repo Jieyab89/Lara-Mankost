@@ -47,14 +47,14 @@ class SavemoneyController extends Controller
 
         return redirect()->route('saves')->with(['success.up' => 'cost: '.$request->name.' Added']);
     }
-    
+
     public function edit($id)
     {
         $saves = Saves::find($id);
-    
+
         return view('saves.edit', compact('saves'));
     }
-  
+
     public function update(Request $request, $id)
     {
         //dd(1);
@@ -62,22 +62,22 @@ class SavemoneyController extends Controller
             'name' => 'required|min:1|max:75|nullable',
             'total' => 'required|min:1|max:75|nullable',
         ]);
-  
+
         $saves = Saves::findOrFail($id);
-    
+
         $saves->update([
             'name' => $request->name,
             'total' => $request->total,
         ]);
-  
+
         return redirect()->route('saves')->with(['success.up' => 'saves: '.$request->name.' Edited!']);
     }
-  
+
     public function delete($id)
     {
         $delete = Saves::findOrFail($id);
         $delete->delete();
-  
+
         return redirect()->back()->with(['success.down' => 'success.up: '.$delete->name.' Deleted!']);
     }
 }

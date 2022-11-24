@@ -28,7 +28,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
         $tot_cash = Cashs::sum('total');
         $tot_cost = Costs::sum('total');
         $tot_saves = Saves::sum('total');
@@ -36,23 +36,30 @@ class HomeController extends Controller
         $tot_strike_cost = Costs::max('total');
         $balance =  $tot_cash - $tot_cost;
         $tot_recap_cost = $balance - $tot_cost;
-        
+
         $show = Reports::latest()->paginate(1)->appends(request()->except('page'));
         $hasData = Reports::first();
         $tot_cash_today = Cashs::whereDate('created_at', Carbon::today())->sum('total');
         $tot_cost_today = Costs::whereDate('created_at', Carbon::today())->sum('total');
+        /*
 
-        /* 
-        
-        Jangan sampai saldo dan tabungan Anda melebihi pengeluaran perhari maupun pengeluaran secara total
-        Kalkulasikan pengeluaran Anda
-        
-        */ 
+        Don't let your balance and savings exceed your daily expenses or total expenses
+        Calculate your expenses
+
+        */
+
+        // CHART PIE GRAPH
+
+        $get_totals_pie = $tot_cash + $tot_cost + $tot_saves;
+        // END PIE GRAPH
+
         return view('home', compact
         (
             'tot_cash', 'tot_cost', 'balance', 'tot_strike_cash', 'tot_strike_cost',
-            'tot_recap_cost', 'tot_saves', 'show', 'hasData', 'tot_cash_today', 'tot_cost_today'
-        ));
+            'tot_recap_cost', 'tot_saves', 'show', 'hasData', 'tot_cash_today',
+            'tot_cost_today', 'get_totals_pie'
+        )
+      );
     }
 
     public function massdelete()
@@ -60,7 +67,8 @@ class HomeController extends Controller
         $delete = Cashs::truncate();
         $delete = Costs::truncate();
         $delete = Saves::truncate();
-  
+        $delete = Reports::truncate();
+
         return redirect()->back()->with(['success.down' => 'All deleted!']);
     }
 }

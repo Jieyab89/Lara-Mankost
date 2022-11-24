@@ -17,7 +17,7 @@
     @csrf
     @method('post')
     <div class="form-group">
-      <label for="exampleInputEmail1">Keterangan</label>
+      <label for="exampleInputEmail1">Desc</label>
       <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
         @error('name')
         <span class="invalid-feedback" role="alert">
@@ -37,6 +37,6 @@
     <button type="submit" class="btn btn-primary">Post</button>
   </form>
   <p></p>
-  <p style="color:red">*Hapus "." titik Anda</p>
+  <p style="color:red">*Delete "." </p>
 </div>
 @endsection
