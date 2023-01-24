@@ -64,3 +64,12 @@ Route::get('/report-all', 'ReportsController@index')->name('report');
 Route::get('/report-create', 'ReportsController@post')->name('report.post');
 Route::post('/report-create', 'ReportsController@send')->name('report.send');
 Route::delete('/report-del/{id}', 'ReportsController@delete')->name('report.hapus');
+
+//Reminders
+Route::get('/reminder', 'ReminderController@index')->name('reminders');
+Route::get('/reminder-create', 'ReminderController@post')->name('reminders.post');
+Route::post('/reminder-create', 'ReminderController@send')->name('reminders.send');
+Route::get('/reminder-edit/{reminder:id}', 'ReminderController@edit')->name('reminders.edit');
+Route::post('/reminder-edit/{reminder:id}', 'ReminderController@update')->name('reminders.update');
+Route::delete('/reminder-del/{id}', 'ReminderController@delete')->name('reminders.hapus');
+Route::any('/reminder-massdel', 'ReminderController@massdelete')->name('massdelete.reminders');

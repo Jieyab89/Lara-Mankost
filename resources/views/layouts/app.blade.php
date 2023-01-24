@@ -25,7 +25,6 @@
     <script src ="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 </head>
 <body>
     <div id="app">
@@ -70,6 +69,10 @@
 
                                     <a class="dropdown-item" href="{{ route('report') }}">
                                         {{ __('Set Date Report') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('reminders') }}">
+                                        {{ __('Set Reminders') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

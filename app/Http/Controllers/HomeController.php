@@ -7,6 +7,7 @@ use App\Cashs;
 use App\Costs;
 use App\Saves;
 use App\Reports;
+use App\Reminders;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,7 @@ class HomeController extends Controller
         $balance =  $tot_cash - $tot_cost;
         $tot_recap_cost = $balance - $tot_cost;
 
+        $reminder_data = Reminders::get();
         $show = Reports::latest()->paginate(1)->appends(request()->except('page'));
         $hasData = Reports::first();
         $tot_cash_today = Cashs::whereDate('created_at', Carbon::today())->sum('total');
@@ -56,7 +58,7 @@ class HomeController extends Controller
         return view('home', compact
         (
             'tot_cash', 'tot_cost', 'balance', 'tot_strike_cash', 'tot_strike_cost',
-            'tot_recap_cost', 'tot_saves', 'show', 'hasData', 'tot_cash_today',
+            'tot_recap_cost', 'tot_saves', 'show', 'hasData', 'tot_cash_today', 'reminder_data',
             'tot_cost_today', 'get_totals_pie'
         )
       );

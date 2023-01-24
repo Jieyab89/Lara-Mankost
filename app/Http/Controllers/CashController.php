@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Cashs;
-use App\Reports; 
+use App\Reports;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +63,7 @@ class CashController extends Controller
 
         return redirect()->route('cash')->with(['success.up' => 'Cash: '.$request->name.' Added']);
     }
-    
+
     public function edit($id)
     {
         $cash = Cashs::find($id);
@@ -71,7 +71,7 @@ class CashController extends Controller
 
         return view('cash.edit', compact('cash', 'hasData'));
     }
-  
+
     public function update(Request $request, $id)
     {
         //dd(1);
@@ -79,29 +79,29 @@ class CashController extends Controller
             'name' => 'required|min:1|max:75|nullable',
             'total' => 'required|min:1|max:75|nullable',
         ]);
-  
+
         $cash = Cashs::findOrFail($id);
-    
+
         $cash->update([
             'name' => $request->name,
             'total' => $request->total,
         ]);
-  
+
         return redirect()->route('cash')->with(['success.up' => 'cash: '.$request->name.' Edited!']);
     }
-  
+
     public function delete($id)
     {
         $delete = Cashs::findOrFail($id);
         $delete->delete();
-  
+
         return redirect()->back()->with(['success.down' => 'success.up: '.$delete->name.' Deleted!']);
     }
 
     public function massdelete()
     {
         $delete = Cashs::truncate();
-  
+
         return redirect()->back()->with(['success.down' => 'All deleted!']);
     }
 }

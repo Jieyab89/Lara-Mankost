@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <style>
   .space { margin-top: 16px; }
@@ -17,6 +18,30 @@
     @endforelse
 </p>
 @else
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-bell" style="font-size:22px;color:green"></i> Reminder</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @forelse ($reminder_data as $r)
+          <ul>
+            <li>{{ $r->remind_name }}</li>
+          </ul>
+        @empty
+        @endforelse
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
 @if(session('success.down'))
    <div class="alert alert-danger">
@@ -26,6 +51,7 @@
 <div class="d-flex justify-content-center">
   <h4>Recap your report for the month</h4>
 </div>
+
 <p class="text-center">
   @forelse($show as $c) {{ $c->report_at }}
   @empty Set your report time first! <a href="{{ route('report') }}">Here</a>
@@ -39,6 +65,16 @@
     <a class="dropdown-item" href="{{ route('print.cash') }}">Export Cash</a>
     <a class="dropdown-item" href="{{ route('print.cost') }}">Export Cost</a>
     <a class="dropdown-item" href="{{ route('all') }}">Export All</a>
+  </div>
+</div>
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Menu
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{{ route('report') }}">Make Report</a>
+    <a class="dropdown-item" href="{{ route('reminders') }}">Make Reminder</a>
+    <a class="dropdown-item" href="{{ route('index') }}">Back Home</a>
   </div>
 </div>
 <div class="col-md-12 bg-light text-right">
@@ -214,4 +250,7 @@
       }
 </script>
 <!--- END CHART PIE --->
+<script>
+    $('#myModal').modal('show');
+</script>
 @endsection
