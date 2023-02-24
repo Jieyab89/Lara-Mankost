@@ -34,7 +34,6 @@
               <tr>
                 <td>{{ $c->name }}</td>
                 <td>{{ $c->report_at }}</td>
-                <td>{{ $c->created_at }}</td>
                 <td>
                   <form action="{{ route('report.hapus', $c->id) }}" method="POST">
                     @csrf
