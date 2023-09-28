@@ -102,6 +102,7 @@
   <div class="dropdown-menu">
     <a class="dropdown-item" href="{{ route('report') }}">Make Report</a>
     <a class="dropdown-item" href="{{ route('reminders') }}">Make Reminder</a>
+    <a class="dropdown-item" href="{{ route('history') }}">Make History</a>
     <a class="dropdown-item" href="{{ route('index') }}">Back Home</a>
   </div>
 </div>
