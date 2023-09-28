@@ -9,6 +9,7 @@ use App\Saves;
 use App\Reports;
 use App\Reminders;
 use Carbon\Carbon;
+use App\Historys;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -43,6 +44,7 @@ class HomeController extends Controller
         $hasData = Reports::first();
         $tot_cash_today = Cashs::whereDate('created_at', Carbon::today())->sum('total');
         $tot_cost_today = Costs::whereDate('created_at', Carbon::today())->sum('total');
+        $history_data = Historys::get();
         /*
 
         Don't let your balance and savings exceed your daily expenses or total expenses
@@ -59,7 +61,7 @@ class HomeController extends Controller
         (
             'tot_cash', 'tot_cost', 'balance', 'tot_strike_cash', 'tot_strike_cost',
             'tot_recap_cost', 'tot_saves', 'show', 'hasData', 'tot_cash_today', 'reminder_data',
-            'tot_cost_today', 'get_totals_pie'
+            'tot_cost_today', 'get_totals_pie', 'history_data'
         )
       );
     }
@@ -70,7 +72,9 @@ class HomeController extends Controller
         $delete = Costs::truncate();
         $delete = Saves::truncate();
         $delete = Reports::truncate();
+        $delete = Historys::truncate();
 
+        // REMOVE 5 TABLE DATA
         return redirect()->back()->with(['success.down' => 'All deleted!']);
     }
 }

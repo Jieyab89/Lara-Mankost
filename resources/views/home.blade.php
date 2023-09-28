@@ -37,7 +37,34 @@
         @endforelse
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#historymodal">
+          View History
+        </button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal 2 -->
+<div class="modal fade" id="historymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="historymodal"><i class="fa fa-spinner fa-spin fa-3x fa-fw" style="font-size:22px;color:green"></i>History</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @forelse ($history_data as $h)
+          <ul>
+            <li>{{ $h->name_bank }} : @currency($h->total) </li>
+          </ul>
+        @empty
+        @endforelse
+      </div>
+      <div class="modal-footer">
+        <a href="{{ route('history') }}" class="btn btn-primary" role="button" aria-pressed="true">Detail</a>
       </div>
     </div>
   </div>
@@ -64,6 +91,7 @@
   <div class="dropdown-menu">
     <a class="dropdown-item" href="{{ route('print.cash') }}">Export Cash</a>
     <a class="dropdown-item" href="{{ route('print.cost') }}">Export Cost</a>
+    <a class="dropdown-item" href="{{ route('print.history') }}">Export History</a>
     <a class="dropdown-item" href="{{ route('all') }}">Export All</a>
   </div>
 </div>

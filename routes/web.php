@@ -58,6 +58,7 @@ Route::delete('/saves-del/{id}', 'SavemoneyController@delete')->name('saves.hapu
 Route::get('/export-all', 'ExportController@all')->name('all');
 Route::get('/export-cash', 'ExportController@cash')->name('print.cash');
 Route::get('/export-cost', 'ExportController@cost')->name('print.cost');
+Route::get('/export-history', 'ExportController@history')->name('print.history');
 
 //Report
 Route::get('/report-all', 'ReportsController@index')->name('report');
@@ -73,3 +74,12 @@ Route::get('/reminder-edit/{reminder:id}', 'ReminderController@edit')->name('rem
 Route::post('/reminder-edit/{reminder:id}', 'ReminderController@update')->name('reminders.update');
 Route::delete('/reminder-del/{id}', 'ReminderController@delete')->name('reminders.hapus');
 Route::any('/reminder-massdel', 'ReminderController@massdelete')->name('massdelete.reminders');
+
+//CASH
+Route::get('/history', 'HistorysController@index')->name('history');
+Route::get('/history-create', 'HistorysController@post')->name('history.post');
+Route::post('/history-create', 'HistorysController@send')->name('history.send');
+Route::get('/history-edit/{history:id}', 'HistorysController@edit')->name('history.edit');
+Route::post('/history-edit/{history:id}', 'HistorysController@update')->name('history.update');
+Route::delete('/history-del/{id}', 'HistorysController@delete')->name('history.hapus');
+Route::any('/history-massdel', 'HistorysController@massdelete')->name('massdelete.history');

@@ -7,6 +7,7 @@ use App\Cashs;
 use App\Costs;
 use App\Saves;
 use App\Reports;
+use App\Historys;
 
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class ExportController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function all()
-    {   
+    {
         $tot_cash = Cashs::sum('total');
         $tot_cost = Costs::sum('total');
         $tot_saves = Saves::sum('total');
@@ -47,7 +48,7 @@ class ExportController extends Controller
     }
 
     public function cash()
-    {   
+    {
         $tot_cash = Cashs::sum('total');
         $cash_data = Cashs::all();
 
@@ -60,7 +61,7 @@ class ExportController extends Controller
     }
 
     public function cost()
-    {   
+    {
         $tot_cost = Costs::sum('total');
         $cost_data = Costs::all();
 
@@ -69,6 +70,18 @@ class ExportController extends Controller
         return view('export.cost', compact
         (
             'tot_cost', 'cost_data', 'show'
+        ));
+    }
+
+    public function history()
+    {
+        $history_data = Historys::all();
+        $tot_history = Historys::sum('total');
+        $show = Historys::latest()->paginate(1)->appends(request()->except('page'));
+
+        return view('export.history', compact
+        (
+            'history_data', 'show', 'tot_history'
         ));
     }
 }
