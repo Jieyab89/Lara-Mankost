@@ -35,12 +35,12 @@
 	</p>
     <table>
 		<tr>
-       <th>No</th>
-       <th>Desc</th>
-       <th>Total</th>
-       <th>Date</th>
+       		<th>No</th>
+       		<th>Desc</th>
+       		<th>Total</th>
+       		<th>Date</th>
 		</tr>
-    @php $no = 1; @endphp
+        @php $no = 1; @endphp
 		@forelse ($cost_data as $row)
 		<tr>
 			<td>{{ $no++ }}</td>
@@ -52,7 +52,7 @@
 		<tr>
 			<td colspan="5" class="text-center">No data</td>
 		</tr>
-    @endforelse
+        @endforelse
 	</table>
     <p>Total : Rp. @currency($tot_cost)</p>
 </body>

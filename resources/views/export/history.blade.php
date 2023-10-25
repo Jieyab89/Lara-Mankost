@@ -1,6 +1,6 @@
 @php
 	header("Content-type: application/vnd-ms-excel");
-	header("Content-Disposition: attachment; filename=Cash.xls");
+	header("Content-Disposition: attachment; filename=History.xls");
 @endphp
 <body>
 	<style type="text/css">
@@ -35,24 +35,23 @@
 	</p>
     <table>
 		<tr>
-        <th>No</th>
-        <th>Desc</th>
-        <th>Total</th>
-        <th>Date</th>
+			<th>No</th>
+			<th>Desc</th>
+			<th>Total</th>
+			<th>Date</th>
 		</tr>
-    @php $no = 1; @endphp
+        @php $no = 1; @endphp
 		@forelse ($history_data as $row)
 		<tr>
 			<td>{{ $no++ }}</td>
 			<td>{{ $row->name_bank }}</td>
-      <td>{{ $row->total }}</td>
-		  <td>{{ $row->created_at }}</td>
+            <td>{{ $row->total }}</td>
+		    <td>{{ $row->created_at }}</td>
 		</tr>
 		@empty
 		<tr>
 			<td colspan="5" class="text-center">No data</td>
 		</tr>
-    @endforelse
+        @endforelse
 	</table>
-    <p>Total : Rp. @currency($tot_history)</p>
 </body>
