@@ -34,6 +34,22 @@
             </div>
           </div>
          <p></p>
+         <div class="form-group">
+            @if(request()->segment(1) == 'posts')
+            <form action="?" method="get">
+            @csrf
+            @else
+            <form action="/cost" method="get">
+            @csrf
+            @endif
+            <div class="input-group input-group-alternative mb-4">
+              <input class="form-control" name="cost-search" placeholder="Search Desc & Total" type="text">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
+            </form>
+          </div>
          <div class="table-responsive">
           <table class="table">
             <thead>

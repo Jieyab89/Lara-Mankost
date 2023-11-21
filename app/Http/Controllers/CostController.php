@@ -21,11 +21,25 @@ class CostController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $tot_cost = Costs::sum('total');
         $cost = Costs::latest()->paginate(25)->appends(request()->except('page'));
         $hasData = Reports::first();
+
+        // search 
+        $value = $request->get('cost-search');
+
+        //$value = $request->get('search-post');
+        if(!empty($value))
+        {
+          $search = "cash-search $value";
+          $cost = Costs::where('name', 'LIKE', '%'.$value.'%')->orWhere('total', 'LIKE', '%'.$value.'%')->latest()->paginate(5)->appends(request()->except('page'));
+        }
+        else
+        {
+          //$cost = Costs::latest()->paginate(5)->appends(request()->except('page'));
+        }
 
         return view('cost.index', compact('tot_cost', 'cost', 'hasData'));
     }

@@ -22,12 +22,26 @@ class CashController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $tot_cash = Cashs::sum('total');
         $cash = Cashs::latest()->paginate(25)->appends(request()->except('page'));
 
         $hasData = Reports::first();
+
+        // search 
+        $value = $request->get('cash-search');
+
+        //$value = $request->get('search-post');
+        if(!empty($value))
+        {
+          $search = "cash-search $value";
+          $cash = Cashs::where('name', 'LIKE', '%'.$value.'%')->orWhere('total', 'LIKE', '%'.$value.'%')->latest()->paginate(5)->appends(request()->except('page'));
+        }
+        else
+        {
+          //$cash = Cashs::latest()->paginate(5)->appends(request()->except('page'));
+        }
 
         return view('cash.index', compact('tot_cash', 'cash', 'hasData'));
     }
