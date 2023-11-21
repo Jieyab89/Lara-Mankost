@@ -41,6 +41,23 @@ class CashController extends Controller
         return view('cash.today', compact('today', 'hasData', 'tot_cash_today'));
     }
 
+    public function max()
+    {
+        $max = Cashs::orderByDesc('total')->paginate(25)->appends(request()->except('page'));
+        $hasData = Reports::first();
+
+        return view('cash.max', compact('hasData', 'max'));
+    }
+
+    public function min()
+    {
+        //$min = Costs::whereNotNull('total')->orderBy('total', 'asc')->value('total');
+        $min = Cashs::orderBy('total')->paginate(25)->appends(request()->except('page'));
+        $hasData = Reports::first();
+
+        return view('cash.min', compact('hasData', 'min'));
+    }
+
     public function post()
     {
         $hasData = Reports::first();

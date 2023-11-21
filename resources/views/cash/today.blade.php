@@ -29,6 +29,8 @@
             </button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="{{ route('cash.today') }}">Today</a>
+              <a class="dropdown-item" href="{{ route('cash.max') }}">Max</a>
+              <a class="dropdown-item" href="{{ route('cash.min') }}">Min</a>
             </div>
           </div>
           <div class="col-md-12 bg-light text-right">

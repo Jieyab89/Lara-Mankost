@@ -39,6 +39,23 @@ class CostController extends Controller
         return view('cost.today', compact('today', 'hasData', 'tot_cost_today'));
     }
 
+    public function max()
+    {
+        $max = Costs::orderByDesc('total')->paginate(25)->appends(request()->except('page'));
+        $hasData = Reports::first();
+
+        return view('cost.max', compact('hasData', 'max'));
+    }
+
+    public function min()
+    {
+        //$min = Costs::whereNotNull('total')->orderBy('total', 'asc')->value('total');
+        $min = Costs::orderBy('total')->paginate(25)->appends(request()->except('page'));
+        $hasData = Reports::first();
+
+        return view('cost.min', compact('hasData', 'min'));
+    }
+
     public function post()
     {
         $hasData = Reports::first();

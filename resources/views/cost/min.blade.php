@@ -21,7 +21,7 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-lg-12">
-         <h1 style="text-align:center;">Cost Today</h1>
+         <h1 style="text-align:center;">Cost Min</h1>
          <a href="{{ route('cost.post') }}" class="btn btn-primary">Create new report</a>
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +48,7 @@
             </thead>
             <tbody>
             @php $no = 1; @endphp
-            @forelse($today as $c)
+            @forelse($min as $c)
               <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $c->name }}</td>
@@ -71,11 +71,10 @@
             @endforelse
           </table>
         </div>
-        <h1><span class="badge badge-success">Rp. @currency($tot_cost_today)</span></h1>
       </div>
     </div>
     <p></p>
-    {{ $today->links() }}
+    {{ $min->links() }}
     <div class="col-md-12 bg-light text-right">
       <form action="{{ route('massdelete.costs') }}" method="POST">
         @csrf

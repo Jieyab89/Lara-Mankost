@@ -21,16 +21,16 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-lg-12">
-         <h1 style="text-align:center;">Cost Today</h1>
+         <h1 style="text-align:center;">Cash Max</h1>
          <a href="{{ route('cost.post') }}" class="btn btn-primary">Create new report</a>
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Fillter
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="{{ route('cost.today') }}">Today</a>
-              <a class="dropdown-item" href="{{ route('cost.max') }}">Max</a>
-              <a class="dropdown-item" href="{{ route('cost.min') }}">Min</a>
+              <a class="dropdown-item" href="{{ route('cash.today') }}">Today</a>
+              <a class="dropdown-item" href="{{ route('cash.max') }}">Max</a>
+              <a class="dropdown-item" href="{{ route('cash.min') }}">Min</a>
             </div>
           </div>
          <p></p>
@@ -48,7 +48,7 @@
             </thead>
             <tbody>
             @php $no = 1; @endphp
-            @forelse($today as $c)
+            @forelse($max as $c)
               <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $c->name }}</td>
@@ -71,11 +71,10 @@
             @endforelse
           </table>
         </div>
-        <h1><span class="badge badge-success">Rp. @currency($tot_cost_today)</span></h1>
       </div>
     </div>
     <p></p>
-    {{ $today->links() }}
+    {{ $max->links() }}
     <div class="col-md-12 bg-light text-right">
       <form action="{{ route('massdelete.costs') }}" method="POST">
         @csrf
