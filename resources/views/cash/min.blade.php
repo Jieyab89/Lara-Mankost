@@ -22,7 +22,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12">
          <h1 style="text-align:center;">Cash Min</h1>
-         <a href="{{ route('cost.post') }}" class="btn btn-primary">Create new report</a>
+         <a href="{{ route('cash.post') }}" class="btn btn-primary">Create new report</a>
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Fillter
@@ -55,10 +55,10 @@
                 <td>@currency($c->total)</td>
                 <td>{{ $c->created_at->toDateString() }}</td>
                 <td>
-                  <div><a class="btn btn-primary btn-sm" href="{{ route('cost.edit', $c->id) }}"><i class="fa fa-edit"></i></a></div>
+                  <div><a class="btn btn-primary btn-sm" href="{{ route('cash.edit', $c->id) }}"><i class="fa fa-edit"></i></a></div>
                 </td>
                 <td>
-                  <form action="{{ route('cost.hapus', $c->id) }}" method="POST">
+                  <form action="{{ route('cash.hapus', $c->id) }}" method="POST">
                     @csrf
                     @method('delete')
                     <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -76,10 +76,10 @@
     <p></p>
     {{ $min->links() }}
     <div class="col-md-12 bg-light text-right">
-      <form action="{{ route('massdelete.costs') }}" method="POST">
+      <form action="{{ route('massdelete.cashs') }}" method="POST">
         @csrf
         @method('delete')
-        <a href="{{ route('massdelete.costs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Delete all
+        <a href="{{ route('massdelete.cashs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Delete all
       </form>
     </div>
 </div>

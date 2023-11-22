@@ -33,13 +33,6 @@
               <a class="dropdown-item" href="{{ route('cash.min') }}">Min</a>
             </div>
           </div>
-          <div class="col-md-12 bg-light text-right">
-            <form action="{{ route('massdelete.cashs') }}" method="POST">
-              @csrf
-              @method('delete')
-              <a href="{{ route('massdelete.cashs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Delete all
-            </form>
-          </div>
          <p></p>
          <div class="table-responsive">
           <table class="table">
@@ -82,6 +75,13 @@
       </div>
     </div>
     <p></p>
+    <div class="col-md-12 bg-light text-right">
+        <form action="{{ route('massdelete.cashs') }}" method="POST">
+          @csrf
+          @method('delete')
+          <a href="{{ route('massdelete.cashs') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> *Delete all
+        </form>
+    </div>
     {{ $today->links() }}
 </div>
 @endif
