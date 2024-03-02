@@ -45,6 +45,7 @@ class HomeController extends Controller
         $tot_cash_today = Cashs::whereDate('created_at', Carbon::today())->sum('total');
         $tot_cost_today = Costs::whereDate('created_at', Carbon::today())->sum('total');
         $history_data = Historys::get();
+        
         /*
 
         Don't let your balance and savings exceed your daily expenses or total expenses
@@ -53,15 +54,39 @@ class HomeController extends Controller
         */
 
         // CHART PIE GRAPH
-
         $get_totals_pie = $tot_cash + $tot_cost + $tot_saves;
         // END PIE GRAPH
+
+        // CHART CURVE GRAPH 
+        $checkpoint_data = $tot_cash + $tot_cost + $tot_saves;
+        $current_month = Carbon::now()->month;
+        $current_year = Carbon::now()->year;
+        $start_date = Carbon::createFromDate($current_year, $current_month, 1)->startOfMonth();
+        $end_date = $start_date->copy()->endOfMonth();
+        $daily_data = [];
+
+        while ($start_date->isSameMonth($end_date)) 
+        {
+            $cash_data = Cashs::whereDate('created_at', $start_date)->sum('total');
+            $cost_data = Costs::whereDate('created_at', $start_date)->sum('total');
+            $savings_data = Saves::whereDate('created_at', $start_date)->sum('total');
+
+            $daily_data[$start_date->toDateString()] = 
+            [
+                'cash' => $cash_data,
+                'cost' => $cost_data,
+                'saves' => $savings_data
+            ];
+
+            $start_date->addDay();
+        }
+        // END CURVE GRAPH 
 
         return view('home', compact
         (
             'tot_cash', 'tot_cost', 'balance', 'tot_strike_cash', 'tot_strike_cost',
             'tot_recap_cost', 'tot_saves', 'show', 'hasData', 'tot_cash_today', 'reminder_data',
-            'tot_cost_today', 'get_totals_pie', 'history_data'
+            'tot_cost_today', 'get_totals_pie', 'history_data', 'checkpoint_data', 'daily_data'
         )
       );
     }

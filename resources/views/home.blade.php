@@ -235,7 +235,8 @@
   <div class="row">
     <h2>Graph</h2>
   </div>
-  <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+  <div id="piechart_3d" style="width: 1000px; height: 500px;"></div>
+  <div id="curve_chart" style="width: 1000px; height: 500px"></div>
   <p><b>*Soon there is new graph chart</b></p>
 </div>
 @else
@@ -279,7 +280,55 @@
       }
 </script>
 <!--- END CHART PIE --->
+
+<!--- CHART CURVE --->
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+     
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        @if($get_totals_pie)
+          data.addColumn('date', 'Tanggal');
+          data.addColumn('number', 'Cash');
+          data.addColumn('number', 'Cost');
+          data.addColumn('number', 'Savings');
+
+          data.addRows([
+            @foreach($daily_data as $date => $data)
+            [new Date('{{ $date }}'), {{ $data['cash'] }}, {{ $data['cost'] }}, {{ $data['saves'] }}],
+            @endforeach
+          ]);
+        @else 
+          var data = google.visualization.arrayToDataTable([
+            ['Date', 'Cash', 'Cost'],
+            ['Sunday', 0, 0],
+            ['Monday', 0, 0],
+           ]);
+        @endif
+
+        var options = {
+          title: 'Cash and Cost Recap',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+
+        $(window).smartresize(function ()
+        {
+          chart.draw(data, options);
+        });
+      }
+</script>
+<!--- END CHART CURVE --->
+
+<!--- BEGIN MODAL --->
 <script>
     $('#myModal').modal('show');
 </script>
+<!--- END CHART CURVE --->
+
 @endsection
