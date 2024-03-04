@@ -93,11 +93,23 @@ class HomeController extends Controller
 
     public function massdelete()
     {
+        /*
+
+        YOU custom whatever you want to delete in the table
+        if you want to disable it, add "//" before $delete
+
+        Example: 
+
+        //$delete = Reminders::truncate();
+
+        */
+
         $delete = Cashs::truncate();
         $delete = Costs::truncate();
-        $delete = Saves::truncate();
-        $delete = Reports::truncate();
         $delete = Historys::truncate();
+        $delete = Reports::truncate();
+        $delete = Saves::truncate();
+        //$delete = Reminders::truncate();
 
         // REMOVE 5 TABLE DATA
         return redirect()->back()->with(['success.down' => 'All deleted!']);

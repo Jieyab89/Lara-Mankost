@@ -28,10 +28,11 @@ Simple, pengeluaran tidak boleh lebih besar, pastikan saldo dan tabungan yang An
 - Otomatis get pengeluaran terbsesar
 - Otomatis get pemasukan terbsesar
 - Sangat ringan bisa digunakan di laptop kentang
-- Graph interface (Coming soon)
-- Tips nabung (Coming soon)
-- Filter output dan pencarian (Coming soon)
+- Graph interface 
+- Tips nabung 
+- Filter output dan pencarian
 - Reminder sebagai pengingat pengeluaran
+- Filter pengeluaran terbesar dan terkecil
 
 NB : *Mankost sudah bisa digunakan untuk keperluan standar, seperti penghitungan, pengurangan dan lainya Anda dapat menikmati mankost ini
 
@@ -63,4 +64,7 @@ Database :
 
 ## Note
 
-Halaman register saya disable, untuk itu Anda dapat melakukan database seeder terlebih dahulu
+Halaman register saya disable, untuk itu Anda dapat melakukan database seeder terlebih dahulu 
+Mohon maaf jika kode ini berantakan dan tidak mengikuti standar clean code 
+
+Terima kasih 
