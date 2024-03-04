@@ -95,12 +95,20 @@ class HomeController extends Controller
     {
         /*
 
-        YOU custom whatever you want to delete in the table
+        You can custom whatever you want to delete in the table
         if you want to disable it, add "//" before $delete
 
         Example: 
 
-        //$delete = Reminders::truncate();
+        Avail table: 
+        1. Cashs
+        2. Costs
+        3. Historys
+        4. Reports
+        5. Saves
+        6. Reminders
+
+        Code: //$delete = Reminders::truncate();
 
         */
 
