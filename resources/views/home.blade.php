@@ -293,18 +293,17 @@
           data.addColumn('date', 'Tanggal');
           data.addColumn('number', 'Cash');
           data.addColumn('number', 'Cost');
-          data.addColumn('number', 'Savings');
 
           data.addRows([
             @foreach($daily_data as $date => $data)
-            [new Date('{{ $date }}'), {{ $data['cash'] }}, {{ $data['cost'] }}, {{ $data['saves'] }}],
+            [new Date('{{ $date }}'), {{ $data['cash'] }}, {{ $data['cost'] }}],
             @endforeach
           ]);
         @else 
           var data = google.visualization.arrayToDataTable([
             ['Date', 'Cash', 'Cost'],
-            ['Sunday', 0, 0],
-            ['Monday', 0, 0],
+            ['March 3, 2024', 0, 0],
+            ['March 4, 2024', 0, 0],
            ]);
         @endif
 
@@ -331,5 +330,4 @@
     $('#myModal').modal('show');
 </script>
 <!--- END MODAL --->
-
 @endsection
