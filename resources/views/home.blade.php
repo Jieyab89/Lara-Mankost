@@ -104,6 +104,7 @@
     <a class="dropdown-item" href="{{ route('reminders') }}">Make Reminder</a>
     <a class="dropdown-item" href="{{ route('history') }}">Make History</a>
     <a class="dropdown-item" href="{{ route('index') }}">Back Home</a>
+    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
   </div>
 </div>
 <div class="col-md-12 bg-light text-right">
@@ -271,7 +272,7 @@
         ]);
 
         var options = {
-          title: 'My Daily Activities',
+          title: 'Status and History Recap',
           is3D: true,
         };
 

@@ -26,7 +26,7 @@
             <div class="col-md-4 single-note-item all-category note-social" style="">
                 <div class="card card-body">
                     <span class="side-stick"></span>
-                    <h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Nightout with friends">2. Go to path {{ config('app.name', 'Laravel') }} <i class="point fa fa-circle ml-1 font-10"></i></h5>
+                    <h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Nightout with friends">2. Go to path directory {{ config('app.name', 'Laravel') }} <i class="point fa fa-circle ml-1 font-10"></i></h5>
                     <div class="note-content">
                         <p class="note-inner-content text-muted" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">Run this command <br> git fetch <br> git pull</p>
                     </div>
